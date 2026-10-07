@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ARG Toolkit — простой браузерный редактор изображений.">
+  <title>ARG Toolkit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span>ARG</span> Toolkit</div>
+    <button id="resetBtn" class="ghost-btn">Сбросить</button>
+  </header>
+
+  <main class="app">
+    <aside class="sidebar">
+      <section class="panel">
+        <h2>Изображение</h2>
+        <label class="upload-btn">
+          <input id="fileInput" type="file" accept="image/*">
+          Открыть изображение
+        </label>
+        <div class="row">
+          <button id="rotateLeft">↶</button>
+          <button id="rotateRight">↷</button>
+          <button id="flipX">↔</button>
+          <button id="flipY">↕</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Размер</h2>
+        <div class="two-cols">
+          <label>Ширина<input id="widthInput" type="number" min="1"></label>
+          <label>Высота<input id="heightInput" type="number" min="1"></label>
+        </div>
+        <label class="check"><input id="keepRatio" type="checkbox" checked> Сохранять пропорции</label>
+        <button id="resizeBtn" class="primary">Изменить размер</button>
+      </section>
+
+      <section class="panel">
+        <h2>Watermark</h2>
+        <label class="upload-btn small">
+          <input id="wmInput" type="file" accept="image/*">
+          Загрузить watermark
+        </label>
+        <label>Прозрачность <output id="opacityOut">35%</output>
+          <input id="opacity" type="range" min="0" max="100" value="35">
+        </label>
+        <label>Размер <output id="wmSizeOut">25%</output>
+          <input id="wmSize" type="range" min="5" max="100" value="25">
+        </label>
+        <div class="select-row">
+          <label>Позиция
+            <select id="wmPosition">
+              <option value="br">Справа снизу</option>
+              <option value="bl">Слева снизу</option>
+              <option value="tr">Справа сверху</option>
+              <option value="tl">Слева сверху</option>
+              <option value="c">По центру</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Текст</h2>
+        <input id="textInput" type="text" placeholder="Например: ARGUMENTOFF0">
+        <div class="two-cols">
+          <label>Размер<input id="textSize" type="number" min="8" max="500" value="48"></label>
+          <label>Прозрачность<input id="textOpacity" type="range" min="0" max="100" value="100"></label>
+        </div>
+        <label>Цвет<input id="textColor" type="color" value="#ffffff"></label>
+        <button id="addTextBtn">Добавить текст</button>
+      </section>
+
+      <section class="panel">
+        <h2>Эффекты</h2>
+        <select id="filterSelect">
+          <option value="none">Без фильтра</option>
+          <option value="grayscale(100%)">Ч/Б</option>
+          <option value="sepia(80%)">Sepia</option>
+          <option value="contrast(140%)">Contrast</option>
+          <option value="brightness(115%)">Bright</option>
+          <option value="saturate(150%)">Saturation</option>
+          <option value="hue-rotate(190deg) saturate(120%)">ARG Blue</option>
+          <option value="contrast(125%) brightness(80%) saturate(80%)">Dark</option>
+        </select>
+      </section>
+
+      <section class="panel">
+        <h2>Экспорт</h2>
+        <div class="two-cols">
+          <label>Формат
+            <select id="format">
+              <option value="png">PNG</option>
+              <option value="jpeg">JPG</option>
+              <option value="webp">WebP</option>
+            </select>
+          </label>
+          <label>Качество<input id="quality" type="range" min="10" max="100" value="92"></label>
+        </div>
+        <button id="exportBtn" class="export">Экспортировать</button>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <div id="dropZone" class="drop-zone">
+        <canvas id="canvas"></canvas>
+        <div id="emptyState">
+          <div class="empty-logo">ARG</div>
+          <h1>ARG Toolkit</h1>
+          <p>Загрузи изображение, чтобы начать</p>
+          <label class="upload-btn">
+            <input id="emptyFileInput" type="file" accept="image/*">
+            Выбрать изображение
+          </label>
+        </div>
+      </div>
+      <div class="status">
+        <span id="statusText">Изображение не загружено</span>
+        <span id="dimensions">—</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
